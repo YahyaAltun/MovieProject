@@ -43,4 +43,8 @@ public class User {
 
     @OneToMany(mappedBy = "userComment")
     private Set<Comment> comment = new HashSet<>();
+
+    @OneToOne
+    @JoinColumn(name="user_id")
+    private UserforRole userforRole;
 }

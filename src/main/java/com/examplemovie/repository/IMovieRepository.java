@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IMovieRepository extends JpaRepository<Movie,Integer> {
-    void save(Movie movie, Long userId);
+
 }

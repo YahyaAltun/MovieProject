@@ -2,6 +2,7 @@ package com.examplemovie.service;
 
 import com.examplemovie.domain.Movie;
 import com.examplemovie.domain.User;
+import com.examplemovie.dto.MovieDTO;
 import com.examplemovie.exception.ResourceNotFoundException;
 import com.examplemovie.repository.IMovieRepository;
 import com.examplemovie.repository.IUserRepository;
@@ -33,8 +34,10 @@ public class MovieServiceImpl implements IMovieService{
 
     @Override
     public void createMovie(Long userId, Movie movie) {
-        iUserRepository.findById(userId).orElseThrow(()->new ResourceNotFoundException("User not found id"+userId));
-        iMovieRepository.save(movie,userId);
+        User user=iUserRepository.findById(userId).orElseThrow(()->new ResourceNotFoundException("User not found id"+userId));
+        movie.setCreatedForUser(user);
+        iMovieRepository.save(movie);
+
 
     }
 
